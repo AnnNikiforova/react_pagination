@@ -5,14 +5,14 @@ type Props = {
   total: number;
   perPage: number;
   currentPage?: number;
-  setCurrentPage: (arg: number) => void;
+  onPageChange: (arg: number) => void;
 };
 
 export const Pagination = ({
   total,
   perPage,
   currentPage = 1,
-  setCurrentPage,
+  onPageChange,
 }: Props) => {
   const pages = getNumbers(1, Math.ceil(total / perPage));
   const items = getNumbers(1, total).map(n => `Item ${n}`);
@@ -23,13 +23,13 @@ export const Pagination = ({
 
   const handleBackwardsClick = () => {
     if (!isCurrentPageFirst) {
-      setCurrentPage(currentPage - 1);
+      onPageChange(currentPage - 1);
     }
   };
 
   const handleForwardsClick = () => {
     if (!isCurrentPageLast) {
-      setCurrentPage(currentPage + 1);
+      onPageChange(currentPage + 1);
     }
   };
 
@@ -63,7 +63,7 @@ export const Pagination = ({
                 data-cy="pageLink"
                 className="page-link"
                 href={`#${pageNumber}`}
-                onClick={() => setCurrentPage(pageNumber)}
+                onClick={() => onPageChange(pageNumber)}
               >
                 {page}
               </a>

@@ -3,7 +3,7 @@ import './App.css';
 import { Pagination } from './components/Pagination';
 
 export const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, onPageChange] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const totalItems = 42;
 
@@ -12,7 +12,7 @@ export const App: React.FC = () => {
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(+event.target.value);
-    setCurrentPage(1);
+    onPageChange(1);
   };
 
   return (
@@ -48,7 +48,7 @@ export const App: React.FC = () => {
         total={totalItems}
         perPage={itemsPerPage}
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
+        onPageChange={onPageChange}
       />
     </div>
   );
